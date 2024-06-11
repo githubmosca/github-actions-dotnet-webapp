@@ -1,0 +1,35 @@
+name: Dotnet Build workflow
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 * * * *' # executa a cada hora
+
+jobs:
+  lint_and_custom_script:
+    name: Lint Code Base and Run Custom Script
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run Super Linter
+        uses: github/super-linter@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run custom script
+        run: |
+          echo "iniciando um script qualquer.."
+       
+          # verifica se o arquivo meuarquivo.txt existe.
+          
+          if [ -f "meuarquivo.txt" ]; then
+            echo "meuarquivo.txt exists."
+          else
+            echo "criando meuarquivo.txt ..."
+            touch meuarquivo.txt
+          fi
+          echo "Dotnet Build workflow finalizado."
