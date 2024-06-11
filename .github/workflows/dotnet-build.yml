@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - main
-  schedule:
-    - cron: '0 * * * *' # executa a cada hora
+  #schedule:
+  #  - cron: '0 * * * *' # executa a cada hora
 
 jobs:
   lint_and_custom_script:
@@ -25,7 +25,7 @@ jobs:
           echo "iniciando um script qualquer.."
        
           # verifica se o arquivo meuarquivo.txt existe.
-          
+
           if [ -f "meuarquivo.txt" ]; then
             echo "meuarquivo.txt exists."
           else
